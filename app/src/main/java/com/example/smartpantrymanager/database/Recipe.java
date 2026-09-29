@@ -1,4 +1,4 @@
-package com.example.smartpantrymanager.data;
+package com.example.smartpantrymanager.database;
 
 public class Recipe {
     private int recipe_id;
