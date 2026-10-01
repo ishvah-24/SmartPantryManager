@@ -1,0 +1,46 @@
+package com.example.smartpantrymanager.activities;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.smartpantrymanager.R;
+import com.example.smartpantrymanager.adapters.PantryAdapter;
+import com.example.smartpantrymanager.dao.PantryDao;
+import com.example.smartpantrymanager.database.DatabaseHelper;
+import com.example.smartpantrymanager.models.PantryItem;
+
+import java.util.List;
+
+public class PantryActivity extends AppCompatActivity {
+
+    private RecyclerView pantryRecyclerView;
+    private PantryAdapter pantryAdapter;
+    private PantryDao pantryDao;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pantry);
+
+        pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
+
+        pantryRecyclerView.setLayoutManager(
+                new LinearLayoutManager(this)
+        );
+
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        pantryDao = new PantryDao(dbHelper);
+
+        loadPantry();
+    }
+
+    private void loadPantry() {
+        List<PantryItem> items = pantryDao.getAll();
+
+        pantryAdapter = new PantryAdapter(items);
+        pantryRecyclerView.setAdapter(pantryAdapter);
+    }
+}
