@@ -21,13 +21,13 @@ public class PantryItem {
 
     public String getName(){return name;}
 
-    public String getNormalized_name(){return normalized_name;}
+    public String getNormalizedName(){return normalized_name;}
 
     public Float getQuantity(){return quantity;}
 
     public String getUnit(){return unit;}
 
-    public String getExpiry_date(){return expiry_date;}
+    public String getExpiryDate(){return expiry_date;}
 
 
     public void setName(String name){
@@ -48,5 +48,9 @@ public class PantryItem {
 
     public void setExpiryDate(String expiry_date){
         this.expiry_date = expiry_date;
+    }
+
+    public void setId(int pantry_id) {
+        this.pantry_id = pantry_id;
     }
 }

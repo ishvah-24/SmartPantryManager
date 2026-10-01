@@ -13,30 +13,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(
-                "CREATE TABLE pantry_items(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name TEXT NOT NULL, " +
-                "normalized_name TEXT NOT NULL, " +
-                "quantity REAL NOT NULL, " +
-                "unit TEXT NOT NULL, " +
-                "expiry_date TEXT NOT NULL)");
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
+    }
 
-        sqLiteDatabase.execSQL(
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL(
+                "CREATE TABLE pantry_items (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "name TEXT NOT NULL, " +
+                        "normalized_name TEXT NOT NULL, " +
+                        "quantity REAL NOT NULL, " +
+                        "unit TEXT NOT NULL, " +
+                        "expiry_date TEXT)");
+
+        db.execSQL(
                 "CREATE TABLE recipes (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name TEXT NOT NULL, " +
-                "steps TEXT NOT NULL)");
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "name TEXT NOT NULL, " +
+                        "steps TEXT NOT NULL)");
 
-        sqLiteDatabase.execSQL(
-                "CREATE TABLE recipe_ingredients(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "recipe_id INTEGRER NOT NULL REFERENCES recipe(id) ON DELETE CASCADE," +
-                "name TEXT NOT NULL, " +
-                "quantity REAL NOT NULL, " +
-                "unit TEXT NOT NULL)");
-
+        db.execSQL(
+                "CREATE TABLE recipe_ingredients (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "recipe_id INTEGER NOT NULL, " +
+                        "name TEXT NOT NULL, " +
+                        "quantity REAL NOT NULL, " +
+                        "unit TEXT NOT NULL, " +
+                        "FOREIGN KEY(recipe_id) REFERENCES recipes(id) ON DELETE CASCADE)");
     }
 
     @Override
