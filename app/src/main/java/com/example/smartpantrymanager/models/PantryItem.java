@@ -4,12 +4,11 @@ public class PantryItem {
     private int pantry_id;
     private String name;
     private String normalized_name;
-    private Float quantity;
+    private Double quantity;
     private String unit;
     private String expiry_date;
 
-    public PantryItem(int pantry_id, String name, String normalized_name, float quantity, String unit, String expiry_date){
-        this.pantry_id = pantry_id;
+    public PantryItem(String name, String normalized_name, Double quantity, String unit, String expiry_date){
         this.name = name;
         this.normalized_name = normalized_name;
         this.quantity = quantity;
@@ -23,7 +22,7 @@ public class PantryItem {
 
     public String getNormalizedName(){return normalized_name;}
 
-    public Float getQuantity(){return quantity;}
+    public Double getQuantity(){return quantity;}
 
     public String getUnit(){return unit;}
 
@@ -38,7 +37,7 @@ public class PantryItem {
         this.normalized_name = normalized_name;
     }
 
-    public void setQuantity(Float quantity){
+    public void setQuantity(Double quantity){
         this.quantity = quantity;
     }
 
