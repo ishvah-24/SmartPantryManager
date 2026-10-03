@@ -14,6 +14,8 @@
 
         <activity android:name=".activities.PantryActivity" />
 
+        <activity android:name=".activities.AddEditIngredientActivity"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
