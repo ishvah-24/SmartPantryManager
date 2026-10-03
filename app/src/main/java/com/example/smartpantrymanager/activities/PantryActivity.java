@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartpantrymanager.R;
 import com.example.smartpantrymanager.adapters.PantryAdapter;
-import com.example.smartpantrymanager.dao.PantryDao;
+import com.example.smartpantrymanager.dao.PantryDAO;
 import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.models.PantryItem;
+
+import android.widget.Button;
+import android.content.Intent;
 
 import java.util.List;
 
@@ -18,7 +21,8 @@ public class PantryActivity extends AppCompatActivity {
 
     private RecyclerView pantryRecyclerView;
     private PantryAdapter pantryAdapter;
-    private PantryDao pantryDao;
+    private PantryDAO pantryDao;
+    private Button addIngredientButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +30,19 @@ public class PantryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pantry);
 
         pantryRecyclerView = findViewById(R.id.pantryRecyclerView);
+        addIngredientButton = findViewById(R.id.addIngredientButton);
+
+        addIngredientButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AddEditIngredientActivity.class);
+            startActivity(intent);
+        });
 
         pantryRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this)
         );
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        pantryDao = new PantryDao(dbHelper);
+        pantryDao = new PantryDAO(dbHelper);
 
         loadPantry();
     }
@@ -42,5 +52,12 @@ public class PantryActivity extends AppCompatActivity {
 
         pantryAdapter = new PantryAdapter(items);
         pantryRecyclerView.setAdapter(pantryAdapter);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        loadPantry();
     }
 }

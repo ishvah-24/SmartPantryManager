@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartpantrymanager.R;
-import com.example.smartpantrymanager.dao.PantryDao;
+import com.example.smartpantrymanager.dao.PantryDAO;
 import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.models.PantryItem;
 
@@ -24,7 +24,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
     private EditText expiryDateEditText;
     private Button saveButton;
 
-    private PantryDao pantryDao;
+    private PantryDAO pantryDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -41,7 +41,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
         //Using the pantryDAO object, it accesses the DB helper to access the pantry specific table in the database
-        pantryDao = new PantryDao(dbHelper);
+        pantryDao = new PantryDAO(dbHelper);
 
         expiryDateEditText.setOnClickListener(view -> {
             Calendar calendar = Calendar.getInstance();

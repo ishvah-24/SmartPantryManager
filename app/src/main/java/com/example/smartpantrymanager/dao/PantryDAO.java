@@ -10,11 +10,11 @@ import com.example.smartpantrymanager.models.PantryItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PantryDao {
+public class PantryDAO {
 
     private final DatabaseHelper dbHelper;
 
-    public PantryDao(DatabaseHelper dbHelper) {
+    public PantryDAO(DatabaseHelper dbHelper) {
         this.dbHelper = dbHelper;
     }
 
@@ -97,7 +97,7 @@ public class PantryDao {
                 "pantry_items",
                 values,
                 "id = ?",
-                new String[]{String.valueOf(item.getId())}
+                new String[]{String.valueOf(item.getPantry_id())}
         );
     }
 
@@ -117,7 +117,7 @@ public class PantryDao {
 
         PantryItem item = new PantryItem();
 
-        item.setId(
+        item.setPantry_id(
                 cursor.getInt(
                         cursor.getColumnIndexOrThrow("id")
                 )

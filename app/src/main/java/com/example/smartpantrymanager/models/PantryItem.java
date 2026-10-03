@@ -33,7 +33,7 @@ public class PantryItem {
         this.name = name;
     }
 
-    public void setNormalized_name(String normalized_name){
+    public void setNormalizedName(String normalized_name){
         this.normalized_name = normalized_name;
     }
 
@@ -49,7 +49,12 @@ public class PantryItem {
         this.expiry_date = expiry_date;
     }
 
-    public void setId(int pantry_id) {
+    public void setPantry_id(int pantry_id) {
         this.pantry_id = pantry_id;
+    }
+
+
+    public PantryItem() {
+
     }
 }
