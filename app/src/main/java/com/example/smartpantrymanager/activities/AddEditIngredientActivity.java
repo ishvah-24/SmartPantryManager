@@ -32,6 +32,9 @@ public class AddEditIngredientActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_add_edit_ingredient);
 
+        int pantryId = getIntent().getIntExtra("pantry_id", -1);
+
+
         nameEditText = findViewById(R.id.nameEditText);
         quantityEditText = findViewById(R.id.quantityEditText);
         unitEditText = findViewById(R.id.unitEditText);
@@ -42,6 +45,21 @@ public class AddEditIngredientActivity extends AppCompatActivity{
 
         //Using the pantryDAO object, it accesses the DB helper to access the pantry specific table in the database
         pantryDao = new PantryDAO(dbHelper);
+
+
+        if (pantryId != -1) {
+            PantryItem item = pantryDao.getById(pantryId);
+
+            if (item != null) {
+                nameEditText.setText(item.getName());
+                quantityEditText.setText(String.valueOf(item.getQuantity()));
+                unitEditText.setText(item.getUnit());
+
+                if (item.getExpiryDate() != null) {
+                    expiryDateEditText.setText(item.getExpiryDate());
+                }
+            }
+        }
 
         expiryDateEditText.setOnClickListener(view -> {
             Calendar calendar = Calendar.getInstance();
