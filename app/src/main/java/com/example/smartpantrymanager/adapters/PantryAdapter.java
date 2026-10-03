@@ -48,7 +48,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), AddEditIngredientActivity.class);
             intent.putExtra("pantry_id", item.getPantry_id());
-            view.getContext();
+            view.getContext().startActivity(intent);
         });
 
     }

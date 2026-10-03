@@ -139,7 +139,14 @@ public class AddEditIngredientActivity extends AppCompatActivity{
                         expiryDate
                 );
 
-                long result = pantryDao.insert(pantryItem);
+                long result = -1;
+
+                if(pantryId == -1){
+                    result = pantryDao.insert(pantryItem);
+                }else{
+                    pantryItem.setPantry_id(pantryId);
+                    result = pantryDao.update(pantryItem);
+                }
 
                 if (result != -1) {
                     Toast.makeText(AddEditIngredientActivity.this, "Ingredient saved", Toast.LENGTH_SHORT).show();
