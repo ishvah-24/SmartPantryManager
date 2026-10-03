@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartpantrymanager.R;
+import com.example.smartpantrymanager.activities.AddEditIngredientActivity;
 import com.example.smartpantrymanager.models.PantryItem;
 
 import java.util.List;
-
+import android.content.Intent;
+import com.example.smartpantrymanager.activities.AddEditIngredientActivity;
 public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
 
     private List<PantryItem> pantryItems;
@@ -42,6 +44,13 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         } else {
             holder.expiryText.setText("Expires: " + item.getExpiryDate());
         }
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), AddEditIngredientActivity.class);
+            intent.putExtra("pantry_id", item.getPantry_id());
+            view.getContext();
+        });
+
     }
 
     @Override
