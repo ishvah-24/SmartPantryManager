@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartpantrymanager.R;
-import com.example.smartpantrymanager.AddEditIngredientActivity;
+import com.example.smartpantrymanager.activities.AddEditIngredientActivity;
 import com.example.smartpantrymanager.models.PantryItem;
 
 import java.util.List;

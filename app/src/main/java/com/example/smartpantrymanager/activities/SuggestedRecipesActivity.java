@@ -1,10 +1,12 @@
 
 package com.example.smartpantrymanager.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +26,7 @@ import java.util.List;
 public class SuggestedRecipesActivity extends AppCompatActivity {
 
     private ListView suggestedRecipesList;
+    private TextView emptyMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,11 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         suggestedRecipesList =
                 findViewById(R.id.suggestedRecipesList);
+
+        // Show a message when no recipes match
+        emptyMessage = findViewById(R.id.emptyMessage);
+
+        suggestedRecipesList.setEmptyView(emptyMessage);
 
         loadSuggestedRecipes();
     }
@@ -51,16 +59,20 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         List<Recipe> matchingRecipes = new ArrayList<>();
         List<String> recipeNames = new ArrayList<>();
 
+        // Check every recipe against the pantry
         for (Recipe recipe : recipes) {
 
             List<RecipeIngredient> requiredIngredients =
-                    ingredientDAO.getByRecipeId(recipe.getRecipe_id());
+                    ingredientDAO.getByRecipeId(
+                            recipe.getRecipe_id()
+                    );
 
             boolean canMake = IngredientMatcher.hasAllIngredients(
                     pantryItems,
                     requiredIngredients
             );
 
+            // Only show recipes with every required ingredient
             if (canMake) {
                 matchingRecipes.add(recipe);
                 recipeNames.add(recipe.getName());
@@ -75,28 +87,25 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
 
         suggestedRecipesList.setAdapter(adapter);
 
+        // Open the selected recipe's details
+        suggestedRecipesList.setOnItemClickListener(
+                (parent, view, position, id) -> {
 
-        suggestedRecipesList.setOnItemClickListener((parent, view, position, id) -> {
+                    Recipe selectedRecipe =
+                            matchingRecipes.get(position);
 
-            Recipe selectedRecipe = matchingRecipes.get(position);
+                    Intent intent = new Intent(
+                            SuggestedRecipesActivity.this,
+                            RecipeDetailActivity.class
+                    );
 
-            Intent intent = new Intent(
-                    SuggestedRecipesActivity.this,
-                    RecipeDetailActivity.class
-            );
+                    intent.putExtra(
+                            "recipe_id",
+                            selectedRecipe.getRecipe_id()
+                    );
 
-            intent.putExtra("recipe_id", selectedRecipe.getRecipe_id());
-
-            startActivity(intent);
-        });
-
-
-        if (matchingRecipes.isEmpty()) {
-            Toast.makeText(
-                    this,
-                    "No recipes match your current pantry.",
-                    Toast.LENGTH_LONG
-            ).show();
-        }
+                    startActivity(intent);
+                }
+        );
     }
 }

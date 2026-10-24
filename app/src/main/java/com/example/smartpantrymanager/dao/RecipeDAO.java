@@ -57,8 +57,6 @@ public class RecipeDAO {
             );
 
             recipes.add(recipe);
-
-            recipes.add(recipe);
         }
 
         cursor.close();
@@ -84,5 +82,28 @@ public class RecipeDAO {
 
         return count > 0;
     }
+
+
+
+    public boolean existsByName(String name) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                "recipes",
+                new String[]{"id"},
+                "name = ?",
+                new String[]{name},
+                null,
+                null,
+                null
+        );
+
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+
+        return exists;
+    }
+
 
 }

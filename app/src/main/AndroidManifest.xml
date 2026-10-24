@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartPantryManager">
         <activity android:name=".activities.PantryActivity" />
-        <activity android:name=".AddEditIngredientActivity" />
+        <activity android:name=".activities.AddEditIngredientActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
