@@ -1,4 +1,4 @@
-package com.example.smartpantrymanager.activities;
+package com.example.smartpantrymanager;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartpantrymanager.R;
 import com.example.smartpantrymanager.dao.PantryDAO;
 import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.models.PantryItem;
@@ -23,6 +22,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
     private EditText unitEditText;
     private EditText expiryDateEditText;
     private Button saveButton;
+    private Button deleteButton;
 
     private PantryDAO pantryDao;
 
@@ -40,6 +40,7 @@ public class AddEditIngredientActivity extends AppCompatActivity{
         unitEditText = findViewById(R.id.unitEditText);
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
         saveButton = findViewById(R.id.saveButton);
+        deleteButton = findViewById(R.id.deleteButton);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -138,7 +139,6 @@ public class AddEditIngredientActivity extends AppCompatActivity{
                         unit,
                         expiryDate
                 );
-
                 long result = -1;
 
                 if(pantryId == -1){
@@ -154,11 +154,27 @@ public class AddEditIngredientActivity extends AppCompatActivity{
                 } else {
                     Toast.makeText(AddEditIngredientActivity.this, "Failed to save ingredient", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
+        deleteButton.setOnClickListener(v->{
+            if(pantryId!=-1){
+                int result = pantryDao.delete(pantryId);
+                if(result>0){
+                    Toast.makeText(
+                            AddEditIngredientActivity.this,
+                            "Ingredient Deleted",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    finish();
+                }else{
+                    Toast.makeText(
+                            AddEditIngredientActivity.this,
+                            "Failed to delete Ingredient",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }
+        });
     }
-
-
 }

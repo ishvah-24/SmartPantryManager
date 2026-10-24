@@ -17,6 +17,9 @@ public class RecipeIngredient {
         this.unit = unit;
     }
 
+    public RecipeIngredient(int recipeId, String name, double quantity, String unit) {
+    }
+
     public int getRecipe_ingredient_id(){return recipe_ingredient_id;}
 
     public int getRecipe_id(){return recipe_id;}

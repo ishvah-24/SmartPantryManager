@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smartpantrymanager.AddEditIngredientActivity;
 import com.example.smartpantrymanager.R;
 import com.example.smartpantrymanager.adapters.PantryAdapter;
 import com.example.smartpantrymanager.dao.PantryDAO;
@@ -17,12 +18,16 @@ import android.content.Intent;
 
 import java.util.List;
 
+import com.example.smartpantrymanager.RecipeSeeder;
+
+
 public class PantryActivity extends AppCompatActivity {
 
     private RecyclerView pantryRecyclerView;
     private PantryAdapter pantryAdapter;
     private PantryDAO pantryDao;
     private Button addIngredientButton;
+    private Button suggestedRecipesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,23 @@ public class PantryActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        suggestedRecipesButton = findViewById(R.id.suggestedRecipesButton);
+
+        suggestedRecipesButton.setOnClickListener(v->{
+            Intent intent = new Intent(
+                    PantryActivity.this,
+                    SuggestedRecipesActivity.class
+            );
+            startActivity(intent);
+        });
+
         pantryRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this)
         );
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         pantryDao = new PantryDAO(dbHelper);
-
+        RecipeSeeder.seed(dbHelper);
         loadPantry();
     }
 
