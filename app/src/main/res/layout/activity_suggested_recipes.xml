@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <ListView
-        android:id="@+id/suggestedRecipesList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#F5F8F2"
+    android:fitsSystemWindows="true">
 
     <TextView
-        android:id="@+id/emptyMessage"
+        android:id="@+id/recipesHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="No recipes match your pantry yet. Add more ingredients and try again."
-        android:textSize="18sp"
-        android:visibility="gone" />
+        android:text="Recipes You Can Make"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#244A35"
+        android:layout_marginBottom="8dp" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Made with ingredients already in your pantry."
+        android:textSize="14sp"
+        android:textColor="#657568"
+        android:layout_marginBottom="16dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/suggestedRecipesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#DCE5DA"
+            android:dividerHeight="8dp"
+            android:background="@android:color/transparent"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false" />
+
+        <TextView
+            android:id="@+id/emptyMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="No recipes match your pantry yet. Add more ingredients and try again."
+            android:textSize="16sp"
+            android:textColor="#657568"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

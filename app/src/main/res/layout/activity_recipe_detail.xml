@@ -1,49 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F8F2"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recipe Details"
+            android:textSize="14sp"
+            android:textColor="#657568"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/recipeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recipe Name"
-            android:textSize="26sp"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp" />
+            android:textColor="#244A35"
+            android:layout_marginBottom="24dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingredients"
+            android:text="Required Ingredients"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#244A35"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/recipeIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/recipe_card_background"
+            android:padding="18dp"
             android:textSize="16sp"
-            android:layout_marginBottom="20dp" />
+            android:textColor="#435448"
+            android:lineSpacingExtra="5dp"
+            android:layout_marginBottom="24dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cooking Instructions"
+            android:text="Preparation Instructions"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#244A35"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/recipeSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:background="@drawable/recipe_card_background"
+            android:padding="18dp"
+            android:textSize="16sp"
+            android:textColor="#435448"
+            android:lineSpacingExtra="6dp" />
 
     </LinearLayout>
 

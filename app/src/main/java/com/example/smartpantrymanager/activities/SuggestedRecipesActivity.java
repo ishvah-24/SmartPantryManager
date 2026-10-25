@@ -3,7 +3,6 @@ package com.example.smartpantrymanager.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,12 +32,11 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggested_recipes);
 
-        suggestedRecipesList =
-                findViewById(R.id.suggestedRecipesList);
-
-        // Show a message when no recipes match
+        // Connect the class variables to the XML views
+        suggestedRecipesList = findViewById(R.id.suggestedRecipesList);
         emptyMessage = findViewById(R.id.emptyMessage);
 
+        // Display a message if no recipes match
         suggestedRecipesList.setEmptyView(emptyMessage);
 
         loadSuggestedRecipes();
@@ -59,29 +57,27 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         List<Recipe> matchingRecipes = new ArrayList<>();
         List<String> recipeNames = new ArrayList<>();
 
-        // Check every recipe against the pantry
+        // Only include recipes the user can make with their pantry
         for (Recipe recipe : recipes) {
 
             List<RecipeIngredient> requiredIngredients =
-                    ingredientDAO.getByRecipeId(
-                            recipe.getRecipe_id()
-                    );
+                    ingredientDAO.getByRecipeId(recipe.getRecipe_id());
 
             boolean canMake = IngredientMatcher.hasAllIngredients(
                     pantryItems,
                     requiredIngredients
             );
 
-            // Only show recipes with every required ingredient
             if (canMake) {
                 matchingRecipes.add(recipe);
                 recipeNames.add(recipe.getName());
             }
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.item_suggested_recipe,
+                R.id.recipeName,
                 recipeNames
         );
 
@@ -91,8 +87,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         suggestedRecipesList.setOnItemClickListener(
                 (parent, view, position, id) -> {
 
-                    Recipe selectedRecipe =
-                            matchingRecipes.get(position);
+                    Recipe selectedRecipe = matchingRecipes.get(position);
 
                     Intent intent = new Intent(
                             SuggestedRecipesActivity.this,

@@ -1,39 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:background="#F5F8F2"
+    android:fitsSystemWindows="true">
 
     <TextView
+        android:id="@+id/pantryHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My Pantry"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:textColor="#244A35"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Keep track of the ingredients you have."
+        android:textSize="14sp"
+        android:textColor="#657568"
+        android:layout_marginBottom="18dp" />
 
     <Button
         android:id="@+id/addIngredientButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Ingredient"
-        android:layout_marginBottom="12dp"
-    />
+        android:text="＋ Add Ingredient"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#356B49"
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/suggestedRecipesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Find Recipes"
-        android:layout_marginBottom="12dp"
-    />
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#244A35"
+        android:backgroundTint="#DCE9D9"
+        android:layout_marginBottom="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pantryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>

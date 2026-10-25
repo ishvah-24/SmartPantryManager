@@ -16,6 +16,9 @@ import com.example.smartpantrymanager.database.DatabaseHelper;
 import com.example.smartpantrymanager.models.PantryItem;
 import com.example.smartpantrymanager.RecipeSeeder;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import java.util.List;
 
 import com.example.smartpantrymanager.activities.AddEditIngredientActivity;
@@ -33,6 +36,8 @@ public class PantryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantry);
+
+        View root = findViewById(android.R.id.content);
 
         // Connect the buttons
         pantryRecyclerView = findViewById(R.id.pantryRecyclerView);

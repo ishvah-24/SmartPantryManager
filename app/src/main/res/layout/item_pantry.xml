@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="18dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/recipe_card_background">
 
     <TextView
         android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tomatoes"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:textColor="#244A35" />
 
     <TextView
         android:id="@+id/quantityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:text="5 pieces"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="#435448" />
 
     <TextView
         android:id="@+id/expiryText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:text="Expires: 2026-10-15"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="#657568" />
 
 </LinearLayout>
