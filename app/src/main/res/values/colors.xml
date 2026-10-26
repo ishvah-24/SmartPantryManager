@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="forest_green">#203D30</color>
+    <color name="warm_cream">#F7F4EB</color>
+    <color name="sage_green">#DCE8D5</color>
+    <color name="citrus_amber">#E9A23B</color>
+    <color name="text_primary">#26352C</color>
+    <color name="text_secondary">#69766B</color>
+    <color name="card_white">#FFFEFA</color>
+    <color name="border_soft">#E3E6DA</color>
+    <color name="error_red">#B5473C</color>
+
 </resources>
